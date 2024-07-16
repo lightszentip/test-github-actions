@@ -17,7 +17,9 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    needs: [build2]
+    needs: [build2,env-step-show]
+    environment:
+        name: ${{needs.env-step-show.outputs.phase}}-foo
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -55,6 +57,8 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      
   build2:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -92,3 +96,14 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+  
+  env-step-show:
+    runs-on: ubuntu-latest
+    name: Env Set
+    outputs:
+      phase: ${{ steps.setvars.outputs.phase }}
+    steps:
+      - name: Set variables
+        id: setvars
+        run: |
+          echo "phase=feature" >> $GITHUB_OUTPUT

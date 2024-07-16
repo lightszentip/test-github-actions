@@ -44,7 +44,6 @@ jobs:
               assignees: [
                 'octocat'
               ],
-              milestone: 1,
               labels: [
                 'bug'
               ],

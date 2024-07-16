@@ -39,8 +39,8 @@ jobs:
             github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-"FOOBAR"
-});
+              title: "FOOBAR"
+              });
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
